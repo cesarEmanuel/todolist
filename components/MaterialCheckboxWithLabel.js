@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 function MaterialCheckboxWithLabel(props) {
   return (
-    <View>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
     <TouchableOpacity style={[styles.container, props.style]}>
       <Icon
@@ -18,7 +18,7 @@ function MaterialCheckboxWithLabel(props) {
     </TouchableOpacity>
     <TouchableOpacity>
       <Icon
-          name={"edit"}
+          name={"file-edit"}
           style={styles.checkIcon}
           onPress={props.editFunc}
         ></Icon>

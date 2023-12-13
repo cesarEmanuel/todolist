@@ -8,6 +8,7 @@ function MaterialUnderlineTextbox(props) {
         placeholder={props.placeholder }
         style={styles.inputStyle}
         onChangeText={props.onChangeText}
+        value={props.value}
        ></TextInput>
     </View>
   );

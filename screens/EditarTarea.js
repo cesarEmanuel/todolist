@@ -1,10 +1,13 @@
 // EditarTarea.js
 import React, { useState, useEffect } from "react";
-import { View, Text, AsyncStorage,StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
 import MaterialButtonText from "../components/MaterialButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {Picker}  from "@react-native-picker/picker";
+import AsyncStorage  from '@react-native-async-storage/async-storage'
+
+
 function EditarTarea() {
   const route = useRoute();
   const navigation = useNavigation();
@@ -36,7 +39,7 @@ function EditarTarea() {
 
   const updateTask = async () => {
     try {
-      const taskId = route.params.taskId; // Assuming taskId is passed from the navigator
+      const taskId = route.params.taskId; 
       const existingTasks = await AsyncStorage.getItem("tasks");
       const tasks = existingTasks ? JSON.parse(existingTasks) : [];
 
@@ -45,7 +48,6 @@ function EditarTarea() {
           ? { ...task, titulo, tipo, descripcion }
           : task
       );
-
       await AsyncStorage.setItem("tasks", JSON.stringify(updatedTasks));
       navigation.navigate("Home");
     } catch (error) {
@@ -61,6 +63,7 @@ function EditarTarea() {
           placeholder='Titulo'
           style={styles.materialUnderlineTextbox}
           onChangeText={(text) => setTitulo(text)}
+          value={titulo}
         />
       </View>
       <View style={styles.pickerContainer}>
@@ -80,11 +83,12 @@ function EditarTarea() {
         placeholder="Descripcion"
         style={styles.materialUnderlineTextbox3}
         onChangeText={(text) => setDescripcion(text)}
+        value={descripcion}
       />
       <MaterialButtonText
         style={[styles.materialButtonSuccess,styles.buttonSave]}
         text='Guardar'
-        // onPress={saveTask}
+        onPress={updateTask}
       ></MaterialButtonText>
     </View>
   );

@@ -89,16 +89,19 @@ function Listartareas({ route }) {
         ></MaterialButtonText>
       }
       </View>
-     {filteredTasks.map((task, index) => (
-        <MaterialCheckboxWithLabel
-          key={index}
-          label={task.titulo}
-          checked={task.marked}
-          onPress={() => handleCheckboxPress(index)}
-          // checked = {checked}
-          editFunc={() => navigateToEditScreen(task.id)}
-        />
-      ))}
+      <View style={{ marginLeft:45 }}>
+        {filteredTasks.map((task, index) => (
+            <MaterialCheckboxWithLabel
+              key={index}
+              label={task.titulo}
+              checked={task.marked}
+              onPress={() => handleCheckboxPress(index)}
+              // checked = {checked}
+              editFunc={() => navigateToEditScreen(task.id)}
+            />
+          ))}
+
+      </View>
     </View>
   );
 }
